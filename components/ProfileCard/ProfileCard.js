@@ -2,10 +2,14 @@ import React from "react";
 import { MdLocationPin, MdOutlineEmail } from "react-icons/md";
 import { LiaEditSolid } from "react-icons/lia";
 import { IoTrashOutline } from "react-icons/io5";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
-const ProfileCard = () => {
+const ProfileCard = ({ setEditModal }) => {
     return (
         <div className="profile-card">
+            <div className="wishlist-icon" onClick={() => setEditModal(false)}>
+                <FaRegHeart className="icon" />
+            </div>
             <div className="avatar">
                 <img
                     src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -30,7 +34,10 @@ const ProfileCard = () => {
             </ul>
 
             <div className="control-bar">
-                <button className="action-btn edit">
+                <button
+                    className="action-btn edit"
+                    onClick={() => setEditModal(true)}
+                >
                     <LiaEditSolid className="icon" />
                     edit
                 </button>

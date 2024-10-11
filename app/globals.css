@@ -66,14 +66,35 @@ a {
   Profile Card Styles
 ----------------------------*/
 .profile-card {
+    position: relative;
     width: 100%;
     height: 100%;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 0.5rem;
-    padding: 1.5rem 1.25rem;
+    padding: 1.5rem 1rem;
     display: flex;
     flex-direction: column;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.08);
+}
+.profile-card:hover {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+.profile-card .wishlist-icon {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    opacity: 0;
+    display: none;
+    transition: all 0.3s linear;
+}
+.profile-card:hover .wishlist-icon {
+    display: block;
+    opacity: 1;
+}
+.profile-card .wishlist-icon > .icon {
+    font-size: 1.15rem;
+    color: var(--primary-clr);
+    cursor: pointer;
 }
 .profile-card > .avatar {
     display: flex;
@@ -176,12 +197,83 @@ a {
 }
 
 /* -------------------------
+  Modal Styles
+----------------------------*/
+/* Edit modal */
+.addTaskModalCustomOverlay {
+    background: rgba(0, 0, 0, 0.6);
+}
+.addTaskModalCustomModal {
+    background: #fff;
+    max-width: 600px;
+    width: 90%;
+    border-radius: 6px;
+    padding: 40px 30px;
+}
+.modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 15;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    /* animation */
+    opacity: 0;
+    display: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-wrapper.show {
+    opacity: 1;
+    display: flex;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-wrapper .modal-container {
+    width: 90%;
+    max-width: 75rem;
+    height: 90%;
+    background-color: var(--white-clr);
+    border-radius: 0.4rem;
+    padding: 1.5rem;
+    position: relative;
+    overflow-y: auto;
+}
+.modal-wrapper .modal-container .modal-close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 1px solid var(--accent-clr);
+    outline: none;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0 0 0 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: var(--accent-clr);
+    color: var(--white-clr);
+    transition: all 0.3s linear;
+}
+.modal-wrapper .modal-container .modal-close-btn:hover {
+    background-color: var(--warning-clr);
+    border-color: var(--warning-clr);
+}
+/* -------------------------
   Navbar Styles
 ----------------------------*/
 .nav-wrapper {
+    position: sticky;
+    top: 0;
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: var(--white-clr);
+    z-index: 10;
     border-bottom: 3px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -235,9 +327,9 @@ a {
     margin-top: 4rem;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
 }
-
+/* Profile Card Row Responsive */
 @media screen and (min-width: 470px) {
     .all-contacts-page .profile-cards-container {
         grid-template-columns: repeat(2, 1fr);
@@ -252,4 +344,82 @@ a {
     .all-contacts-page .profile-cards-container {
         grid-template-columns: repeat(4, 1fr);
     }
+}
+
+/* -------------------------
+  Add Contact Page Styles
+----------------------------*/
+.contact-form-row {
+    width: 100%;
+    max-width: 35rem;
+    margin: 0 auto;
+    margin-top: 4rem;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+}
+.form .inputs-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: 0.75rem;
+    grid-row-gap: 1.5rem;
+}
+
+.inputs-container .input-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.input-row > label {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--accent-clr);
+    opacity: 0.9;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+}
+.input-row > input {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+    color: var(--accent-clr);
+    margin: 0.25rem 0;
+}
+
+.input-row > span.error {
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: var(--warning-clr);
+    opacity: 0.9;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+}
+
+.form .submit-btn-row {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-btn-row .submit-btn {
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    color: var(--white-clr);
+    background-color: var(--accent-clr);
+    text-transform: capitalize;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    border: 1px solid var(--accent-clr);
+    outline: none;
+    padding: 0.6rem 2rem;
+    border-radius: 0.25rem;
+}
+
+.submit-btn-row .submit-btn:hover {
+    background-color: var(--black-clr);
+    border: 1px solid var(--black-clr);
 }

@@ -1,5 +1,7 @@
 import "./globals.css";
+
 import { Toaster } from "react-hot-toast";
+import "react-responsive-modal/styles.css";
 
 import { Oswald } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
