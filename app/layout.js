@@ -5,7 +5,7 @@ import { Oswald } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
 
 const oswald = Oswald({
-    weight: ["300", "400", "500", "700"],
+    weight: ["300", "400", "500", "600", "700"],
     subsets: ["latin"],
 });
 

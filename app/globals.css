@@ -10,10 +10,10 @@ html {
 
 :root {
     --primary-clr: #058f34;
-    --secondary-clr: #ef0d0d;
     --accent-clr: #252525;
     --white-clr: #fff;
     --black-clr: #000;
+    --warning-clr: #ef0d0d;
 }
 
 /* -------------------------
@@ -61,6 +61,120 @@ a {
     margin-top: 0.5rem;
     letter-spacing: 0.2px;
 }
+
+/* -------------------------
+  Profile Card Styles
+----------------------------*/
+.profile-card {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.5rem;
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.08);
+}
+.profile-card > .avatar {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-card > .avatar > img {
+    width: 6.25rem;
+    height: 6.25rem;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 0.15rem;
+    border: 2px solid rgba(0, 0, 0, 0.13);
+}
+.profile-card .name {
+    margin-top: 0.35rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--accent-clr);
+    text-align: center;
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    letter-spacing: 0.1px;
+}
+.profile-card .contact {
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-align: center;
+    color: var(--accent-clr);
+    letter-spacing: 0.1px;
+}
+
+.profile-card .info-list {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.35rem;
+}
+.profile-card .info-list .item {
+    display: flex;
+    align-items: center;
+    font-size: 0.77rem;
+    font-weight: 400;
+    opacity: 0.9;
+    letter-spacing: 0.2px;
+    text-transform: capitalize;
+    color: var(--accent-clr);
+}
+.profile-card .info-list .item.email {
+    text-transform: none;
+}
+.profile-card .info-list .item > .icon {
+    font-size: 1rem;
+    margin-right: 0.15rem;
+}
+.profile-card .info-list .item > .value {
+    font-weight: 400;
+    margin-left: 0.25rem;
+    opacity: 1;
+    color: var(--black-clr);
+}
+.profile-card .control-bar {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile-card .control-bar .action-btn {
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    width: 50%;
+    color: var(--white-clr);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: capitalize;
+}
+.profile-card .control-bar .action-btn > .icon {
+    font-size: 0.9rem;
+    margin-right: 0.1rem;
+}
+.profile-card .control-bar .action-btn.edit {
+    border-radius: 0.25rem 0 0 0.25rem;
+    background-color: var(--accent-clr);
+}
+.profile-card .control-bar .action-btn.delete {
+    border-radius: 0 0.25rem 0.25rem 0;
+    background-color: var(--warning-clr);
+}
+.profile-card .control-bar .action-btn:hover {
+    font-weight: 600;
+}
+
 /* -------------------------
   Navbar Styles
 ----------------------------*/
@@ -112,4 +226,30 @@ a {
 
 .nav-right-col .main-menu .menu-item .menu-link.active {
     color: var(--primary-clr);
+}
+
+/* -------------------------
+  All Contacts Page Styles
+----------------------------*/
+.all-contacts-page .profile-cards-container {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media screen and (min-width: 470px) {
+    .all-contacts-page .profile-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (min-width: 768px) {
+    .all-contacts-page .profile-cards-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (min-width: 1024px) {
+    .all-contacts-page .profile-cards-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
