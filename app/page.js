@@ -5,6 +5,7 @@ import EditModal from "@/components/EditModal/EditModal";
 import PageTitle from "@/components/PageTitle/PageTitle";
 import ProfileCard from "@/components/ProfileCard/ProfileCard";
 import ProfileLoadingSecle from "@/components/ProfileLoading/ProfileLoading";
+import { useGetPostsQuery } from "@/redux/features/api/baseAPI";
 
 const pageTitleData = {
     title: "contacts list",
@@ -18,6 +19,13 @@ const arr = [
 const loadingArr = [1, 2, 3, 4];
 
 const AllContactPage = () => {
+    const {
+        data: posts,
+        isLoading: loading,
+        isError,
+        error,
+    } = useGetPostsQuery();
+
     const [contacts, setContacts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 

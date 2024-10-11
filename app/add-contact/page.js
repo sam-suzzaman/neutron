@@ -1,6 +1,6 @@
 "use client";
 import PageTitle from "@/components/PageTitle/PageTitle";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 
@@ -11,6 +11,8 @@ const pageTitleData = {
 };
 
 const AddContactPage = () => {
+    const [isLoading, setIsLoading] = useState(true);
+
     // form hook
     const {
         register,
