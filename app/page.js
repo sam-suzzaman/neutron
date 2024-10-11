@@ -1,4 +1,5 @@
 "use client";
+import ConfirmModal from "@/components/ConfirmModal/ConfirmModal";
 import EditModal from "@/components/EditModal/EditModal";
 import Modal from "@/components/Modal/Modal";
 import PageTitle from "@/components/PageTitle/PageTitle";
@@ -12,10 +13,7 @@ const pageTitleData = {
 };
 const AllContactPage = () => {
     const [editModal, setEditModal] = useState(false);
-
-    // Edit modal handlers
-    // const openEditModal = () => setEditModal(true);
-    const closeEditModal = () => setEditModal(false);
+    const [deleteModal, setDeleteModal] = useState(false);
 
     return (
         <section className="page-wrapper all-contacts-page">
@@ -26,14 +24,14 @@ const AllContactPage = () => {
                 />
 
                 <div className="profile-cards-container">
-                    <ProfileCard setEditModal={setEditModal} />
+                    <ProfileCard
+                        setEditModal={setEditModal}
+                        setDeleteModal={setDeleteModal}
+                    />
                 </div>
-                <EditModal open={editModal} onClose={closeEditModal} />
 
-                {/* <Modal
-                    isShowModal={isShowModal}
-                    setIsShowModal={setIsShowModal}
-                /> */}
+                <EditModal open={editModal} onClose={setEditModal} />
+                <ConfirmModal open={deleteModal} onClose={setDeleteModal} />
             </div>
         </section>
     );

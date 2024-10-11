@@ -1,3 +1,15 @@
+/* --------------------------------
+    Indexing
+-----------------------------------
+    1. Common Styles
+    2. Navbar Styles
+    3. Profile Card Styles
+    4. Modal Styles
+    5. Form Styles
+    6. All Contacts Page Styles
+    7. Add Contact Page Styles
+-----------------------------------*/
+
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +29,7 @@ html {
 }
 
 /* -------------------------
-  Common Styles
+  1. Common Styles
 ----------------------------*/
 body {
     font-weight: 300;
@@ -63,7 +75,64 @@ a {
 }
 
 /* -------------------------
-  Profile Card Styles
+  2. Navbar Styles
+----------------------------*/
+.nav-wrapper {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--white-clr);
+    z-index: 10;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.08);
+}
+
+.nav-wrapper .nav-container {
+    width: 100%;
+    max-width: 75rem;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-container .nav-left-col .logo {
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    color: var(--primary-clr);
+    display: inline-block;
+}
+
+.nav-container .nav-right-col .main-menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+}
+
+.nav-right-col .main-menu .menu-item .menu-link {
+    text-transform: capitalize;
+    color: var(--accent-clr);
+    font-size: 1rem;
+    padding: 0.3rem 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    letter-spacing: 0.1px;
+}
+.nav-right-col .main-menu .menu-item .menu-link:hover {
+    opacity: 0.8;
+}
+
+.nav-right-col .main-menu .menu-item .menu-link.active {
+    color: var(--primary-clr);
+}
+
+/* -------------------------
+  3. Profile Card Styles
 ----------------------------*/
 .profile-card {
     position: relative;
@@ -197,173 +266,111 @@ a {
 }
 
 /* -------------------------
-  Modal Styles
+  4. Modal Styles
 ----------------------------*/
-/* Edit modal */
-.addTaskModalCustomOverlay {
+.modalOverlay {
     background: rgba(0, 0, 0, 0.6);
 }
-.addTaskModalCustomModal {
+.modalContainer {
     background: #fff;
-    max-width: 600px;
+    max-width: 35rem;
     width: 90%;
-    border-radius: 6px;
-    padding: 40px 30px;
-}
-.modal-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 15;
-    /* display: flex; */
-    justify-content: center;
-    align-items: center;
-    /* animation */
-    opacity: 0;
-    display: none;
-    transition: all 0.3s ease-in-out;
+    border-radius: 0.35rem;
+    padding: 1.5rem 2rem !important;
 }
 
-.modal-wrapper.show {
-    opacity: 1;
-    display: flex;
-    transition: all 0.3s ease-in-out;
+/* Edit modal */
+.form-title {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
-
-.modal-wrapper .modal-container {
-    width: 90%;
-    max-width: 75rem;
-    height: 90%;
-    background-color: var(--white-clr);
-    border-radius: 0.4rem;
-    padding: 1.5rem;
-    position: relative;
-    overflow-y: auto;
-}
-.modal-wrapper .modal-container .modal-close-btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: 1px solid var(--accent-clr);
-    outline: none;
-    width: 1.75rem;
-    height: 1.75rem;
-    border-radius: 0 0 0 4px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    cursor: pointer;
-    background-color: var(--accent-clr);
-    color: var(--white-clr);
-    transition: all 0.3s linear;
-}
-.modal-wrapper .modal-container .modal-close-btn:hover {
-    background-color: var(--warning-clr);
-    border-color: var(--warning-clr);
-}
-/* -------------------------
-  Navbar Styles
-----------------------------*/
-.nav-wrapper {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: var(--white-clr);
-    z-index: 10;
-    border-bottom: 3px solid rgba(0, 0, 0, 0.08);
-}
-
-.nav-wrapper .nav-container {
-    width: 100%;
-    max-width: 75rem;
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-container .nav-left-col .logo {
-    font-weight: 600;
-    font-style: italic;
-    font-size: 1.6rem;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    color: var(--primary-clr);
-    display: inline-block;
-}
-
-.nav-container .nav-right-col .main-menu {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    list-style: none;
-}
-
-.nav-right-col .main-menu .menu-item .menu-link {
+.form-title .title {
     text-transform: capitalize;
     color: var(--accent-clr);
-    font-size: 1rem;
-    padding: 0.3rem 0.75rem;
-    cursor: pointer;
-    transition: all 0.3s linear;
-    letter-spacing: 0.1px;
-}
-.nav-right-col .main-menu .menu-item .menu-link:hover {
-    opacity: 0.8;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
 }
 
-.nav-right-col .main-menu .menu-item .menu-link.active {
+/* Delete/Confirm modal */
+.confirm-modal-body {
+    margin-top: 1.5rem;
+}
+.confirm-modal-body .icon-holder {
+    display: flex;
+    justify-content: center;
+}
+.confirm-modal-body .icon-holder > .icon {
+    font-size: 3.5rem;
+    color: var(--warning-clr);
+    opacity: 0.9;
+}
+.confirm-modal-body .title {
+    margin-top: 0.85rem;
+    font-size: 1.75rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: var(--accent-clr);
+    text-align: center;
+}
+.confirm-modal-body .info {
+    margin-top: 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 300;
+    letter-spacing: 0.4px;
+    color: var(--accent-clr);
+    text-align: center;
+}
+
+.confirm-modal-body .decission-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.25rem;
+    gap: 0.8rem;
+}
+.decission-row .decission {
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding: 0.2rem 0.75rem;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    transition: all 0.3s linear;
+}
+.decission.yes {
+    border: 1px solid var(--primary-clr);
     color: var(--primary-clr);
 }
-
-/* -------------------------
-  All Contacts Page Styles
-----------------------------*/
-.all-contacts-page .profile-cards-container {
-    margin-top: 4rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+.decission.yes:hover {
+    color: var(--white-clr);
+    background-color: var(--primary-clr);
 }
-/* Profile Card Row Responsive */
-@media screen and (min-width: 470px) {
-    .all-contacts-page .profile-cards-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.decission.cancel {
+    border: 1px solid var(--warning-clr);
+    color: var(--warning-clr);
 }
-@media screen and (min-width: 768px) {
-    .all-contacts-page .profile-cards-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-@media screen and (min-width: 1024px) {
-    .all-contacts-page .profile-cards-container {
-        grid-template-columns: repeat(4, 1fr);
-    }
+.decission.cancel:hover {
+    color: var(--white-clr);
+    background-color: var(--warning-clr);
 }
 
 /* -------------------------
-  Add Contact Page Styles
+  5. Form Styles
 ----------------------------*/
-.contact-form-row {
-    width: 100%;
-    max-width: 35rem;
-    margin: 0 auto;
-    margin-top: 4rem;
-}
+
 .form {
     display: flex;
     flex-direction: column;
 }
 .form .inputs-container {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr;
     grid-column-gap: 0.75rem;
-    grid-row-gap: 1.5rem;
+    grid-row-gap: 1rem;
 }
 
 .inputs-container .input-row {
@@ -422,4 +429,40 @@ a {
 .submit-btn-row .submit-btn:hover {
     background-color: var(--black-clr);
     border: 1px solid var(--black-clr);
+}
+
+/* -------------------------
+  6. All Contacts Page Styles
+----------------------------*/
+.all-contacts-page .profile-cards-container {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+/* Profile Card Row Responsive */
+@media screen and (min-width: 470px) {
+    .all-contacts-page .profile-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (min-width: 768px) {
+    .all-contacts-page .profile-cards-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (min-width: 1024px) {
+    .all-contacts-page .profile-cards-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* -------------------------
+  7. Add Contact Page Styles
+----------------------------*/
+.contact-form-row {
+    width: 100%;
+    max-width: 35rem;
+    margin: 0 auto;
+    margin-top: 3rem;
 }

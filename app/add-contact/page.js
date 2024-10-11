@@ -148,6 +148,27 @@ const AddContactPage = () => {
                                     </span>
                                 )}
                             </div>
+                            {/* input-5: avatar */}
+                            <div className="input-row">
+                                <label htmlFor="avatar">Profile picture</label>
+                                <input
+                                    type="text"
+                                    id="avatar"
+                                    placeholder="Type here"
+                                    {...register("avatar", {
+                                        required: {
+                                            value: true,
+                                            message:
+                                                "Profile Photo URL is required",
+                                        },
+                                    })}
+                                />
+                                {errors?.avatar && (
+                                    <span className="error">
+                                        {errors?.avatar?.message}
+                                    </span>
+                                )}
+                            </div>
                         </div>
                         <div className="submit-btn-row">
                             <button className="submit-btn">add contact</button>

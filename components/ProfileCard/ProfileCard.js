@@ -4,7 +4,7 @@ import { LiaEditSolid } from "react-icons/lia";
 import { IoTrashOutline } from "react-icons/io5";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
-const ProfileCard = ({ setEditModal }) => {
+const ProfileCard = ({ setEditModal, setDeleteModal }) => {
     return (
         <div className="profile-card">
             <div className="wishlist-icon" onClick={() => setEditModal(false)}>
@@ -41,7 +41,10 @@ const ProfileCard = ({ setEditModal }) => {
                     <LiaEditSolid className="icon" />
                     edit
                 </button>
-                <button className="action-btn delete">
+                <button
+                    className="action-btn delete"
+                    onClick={() => setDeleteModal(true)}
+                >
                     <IoTrashOutline className="icon" />
                     delete
                 </button>

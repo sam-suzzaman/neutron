@@ -20,62 +20,152 @@ const EditModal = ({ open, onClose }) => {
     return (
         <Modal
             open={open}
-            onClose={onClose}
+            onClose={() => onClose(false)}
             center
             closeOnOverlayClick={false}
             classNames={{
-                overlay: "addTaskModalCustomOverlay",
-                modal: "addTaskModalCustomModal",
+                overlay: "modalOverlay",
+                modal: "modalContainer",
             }}
         >
             <div className="">
+                <div className="form-title">
+                    <h4 className="title">update contact</h4>
+                </div>
                 <form
-                    className="mt-8"
+                    className="form"
                     onSubmit={handleSubmit(onSubmit)}
                     autoComplete="off"
                 >
-                    {/* username row */}
-                    <div className="flex flex-col">
-                        <label
-                            htmlFor="title"
-                            className="capitalize text-xs font-semibold inline-block mb-2"
-                        >
-                            Username:
-                        </label>
-                        <input
-                            type="text"
-                            id="username"
-                            className="outline-none border-tracker-200 border-[1px] w-full rounded-[4px] px-[10px] py-[4px] text-sm font-semibold text-black focus:border-tracker-400 transition-all duration-300"
-                            {...register("username", {
-                                required: {
-                                    value: true,
-                                    message: "Username is required",
-                                },
-                                maxLength: {
-                                    value: 30,
-                                    message: "Too long (max 30char)",
-                                },
-                                minLength: {
-                                    value: 3,
-                                    message: "Too short (min 3char)",
-                                },
-                            })}
-                        />
-                        {errors?.username && (
-                            <span className="capitalize text-[11px] font-semibold inline-block mt-1 text-red-400 tracking-wide">
-                                {errors?.username?.message}
-                            </span>
-                        )}
+                    <div className="inputs-container">
+                        {/* input-1: username */}
+                        <div className="input-row">
+                            <label htmlFor="username">contact name</label>
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder="Type here"
+                                {...register("username", {
+                                    required: {
+                                        value: true,
+                                        message: "contact name is required",
+                                    },
+                                    maxLength: {
+                                        value: 30,
+                                        message: "Too long (max 30char)",
+                                    },
+                                    minLength: {
+                                        value: 3,
+                                        message: "Too short (min 3char)",
+                                    },
+                                })}
+                            />
+                            {errors?.username && (
+                                <span className="error">
+                                    {errors?.username?.message}
+                                </span>
+                            )}
+                        </div>
+                        {/* input-2: email */}
+                        <div className="input-row">
+                            <label htmlFor="email">email</label>
+                            <input
+                                type="text"
+                                id="email"
+                                placeholder="Type here"
+                                {...register("email", {
+                                    required: {
+                                        value: true,
+                                        message: "email is required",
+                                    },
+                                })}
+                            />
+                            {errors?.email && (
+                                <span className="error">
+                                    {errors?.email?.message}
+                                </span>
+                            )}
+                        </div>
+                        {/* input-3: phoneNumber */}
+                        <div className="input-row">
+                            <label htmlFor="phoneNumber">Contact Number</label>
+                            <input
+                                type="text"
+                                id="phoneNumber"
+                                placeholder="Type here"
+                                {...register("phoneNumber", {
+                                    required: {
+                                        value: true,
+                                        message: "Contact Number is required",
+                                    },
+                                    maxLength: {
+                                        value: 30,
+                                        message: "Too long (max 30char)",
+                                    },
+                                    minLength: {
+                                        value: 3,
+                                        message: "Too short (min 3char)",
+                                    },
+                                })}
+                            />
+                            {errors?.phoneNumber && (
+                                <span className="error">
+                                    {errors?.phoneNumber?.message}
+                                </span>
+                            )}
+                        </div>
+                        {/* input-4: address */}
+                        <div className="input-row">
+                            <label htmlFor="address">address</label>
+                            <input
+                                type="text"
+                                id="address"
+                                placeholder="Type here"
+                                {...register("address", {
+                                    required: {
+                                        value: true,
+                                        message: "address is required",
+                                    },
+                                    maxLength: {
+                                        value: 50,
+                                        message: "Too long (max 50char)",
+                                    },
+                                    minLength: {
+                                        value: 3,
+                                        message: "Too short (min 3char)",
+                                    },
+                                })}
+                            />
+                            {errors?.address && (
+                                <span className="error">
+                                    {errors?.address?.message}
+                                </span>
+                            )}
+                        </div>
+                        {/* input-5: avatar */}
+                        <div className="input-row">
+                            <label htmlFor="avatar">Profile picture</label>
+                            <input
+                                type="text"
+                                id="avatar"
+                                placeholder="Type here"
+                                {...register("avatar", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "Profile Photo URL is required",
+                                    },
+                                })}
+                            />
+                            {errors?.avatar && (
+                                <span className="error">
+                                    {errors?.avatar?.message}
+                                </span>
+                            )}
+                        </div>
                     </div>
-                    {/* button */}
-                    <div className="mt-6 flex justify-center items-center">
-                        <button
-                            type="submit"
-                            className="capitalize font-semibold text-sm bg-tracker-600 text-white px-6 py-2 rounded-sm transition-all duration-300 hover:bg-tracker-800 disabled:cursor-not-allowed"
-                        >
-                            {/* {isLoading ? "Loading..." : " add task"} */}{" "}
-                            update
-                        </button>
+                    <div className="submit-btn-row">
+                        <button className="submit-btn">update now</button>
                     </div>
                 </form>
             </div>
