@@ -201,15 +201,14 @@ a {
     margin-top: 1.25rem;
     display: flex;
     flex-direction: column;
-    row-gap: 0.35rem;
+    row-gap: 0.5rem;
 }
 .profile-card .info-list .item {
     display: flex;
     align-items: center;
     font-size: 0.77rem;
-    font-weight: 400;
-    opacity: 0.9;
-    letter-spacing: 0.2px;
+    font-weight: 300;
+    letter-spacing: 0.4px;
     text-transform: capitalize;
     color: var(--accent-clr);
 }
@@ -277,6 +276,7 @@ a {
     width: 90%;
     border-radius: 0.35rem;
     padding: 1.5rem 2rem !important;
+    padding-bottom: 2.75rem !important;
 }
 
 /* Edit modal */

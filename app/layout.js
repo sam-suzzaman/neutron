@@ -2,6 +2,7 @@ import "./globals.css";
 
 import { Toaster } from "react-hot-toast";
 import "react-responsive-modal/styles.css";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import { Oswald } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
