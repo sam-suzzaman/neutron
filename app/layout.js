@@ -1,6 +1,8 @@
 "use client";
 import "./globals.css";
 
+export const fetchCache = "force-no-store";
+
 import { Toaster } from "react-hot-toast";
 import "react-responsive-modal/styles.css";
 import "react-loading-skeleton/dist/skeleton.css";
