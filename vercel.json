@@ -6,6 +6,10 @@
                 {
                     "key": "Set-Cookie",
                     "value": "__vercel_live_token=token; SameSite=None; Secure"
+                },
+                {
+                    "key": "Cache-Control",
+                    "value": "no-store, max-age=0, must-revalidate"
                 }
             ]
         }
