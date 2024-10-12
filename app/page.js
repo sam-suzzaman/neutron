@@ -27,8 +27,7 @@ const AllContactPage = () => {
 
     // Required States for modal
     // const [editModal, setEditModal] = useState(false);
-    const [deleteModal, setDeleteModal] = useState(false);
-    const [editContact, setEditContact] = useState(null);
+    // const [deleteModal, setDeleteModal] = useState(false);
 
     if (isGetError) {
         return (
@@ -83,16 +82,14 @@ const AllContactPage = () => {
                     {contactsData?.result?.map((item, i) => (
                         <ProfileCard
                             key={item._id + i}
-                            setDeleteModal={setDeleteModal}
                             index={i}
                             contact={item}
-                            setEditContact={setEditContact}
                         />
                     ))}
                 </div>
 
                 {/* <EditModal open={editModal} onClose={setEditModal} /> */}
-                <ConfirmModal open={deleteModal} onClose={setDeleteModal} />
+                {/* <ConfirmModal open={deleteModal} onClose={setDeleteModal} /> */}
             </div>
         </section>
     );

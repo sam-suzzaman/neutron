@@ -19,7 +19,7 @@ const baseApi = createApi({
         }),
         updateContact: builder.mutation({
             query: ({ data, id }) => ({
-                url: `/contacts/${id}`,
+                url: `contacts/${id}`,
                 method: "PUT",
                 body: data,
             }),

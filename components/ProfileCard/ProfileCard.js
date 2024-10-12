@@ -6,6 +6,7 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 import { motion } from "framer-motion";
 import EditModal from "../EditModal/EditModal";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
 const fadeInVariants = {
     initial: {
         opacity: 0,
@@ -17,9 +18,13 @@ const fadeInVariants = {
     },
 };
 
-const ProfileCard = ({ setDeleteModal, index, contact }) => {
-    const [editModal, setEditModal] = useState(false);
+const ProfileCard = ({ index, contact }) => {
+    // Props destructure
     const { _id, username, avatar, email, phoneNumber, address } = contact;
+
+    // States for modals
+    const [editModal, setEditModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
 
     return (
         <motion.div
@@ -27,6 +32,7 @@ const ProfileCard = ({ setDeleteModal, index, contact }) => {
             whileInView={fadeInVariants.animate}
             transition={{ duration: 0.5, delay: 0.06 * index }}
             viewport={{ once: true }}
+            key={_id}
         >
             <div className="profile-card">
                 <div
@@ -79,6 +85,11 @@ const ProfileCard = ({ setDeleteModal, index, contact }) => {
                 open={editModal}
                 onClose={setEditModal}
                 contact={contact}
+            />
+            <ConfirmModal
+                open={deleteModal}
+                onClose={setDeleteModal}
+                contactID={_id}
             />
         </motion.div>
     );
