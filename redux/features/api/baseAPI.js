@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseApi = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: "/api/v1/",
-        // baseUrl: "https://neutron-cyan.vercel.app/api/v1/",
+        // baseUrl: "/api/v1/",
+        baseUrl: "https://neutron-cyan.vercel.app/api/v1/",
     }),
     endpoints: (builder) => ({
         getAllContacts: builder.query({
