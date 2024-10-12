@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdLocationPin, MdOutlineEmail } from "react-icons/md";
 import { LiaEditSolid } from "react-icons/lia";
 import { IoTrashOutline } from "react-icons/io5";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 import { motion } from "framer-motion";
+import EditModal from "../EditModal/EditModal";
 const fadeInVariants = {
     initial: {
         opacity: 0,
@@ -16,8 +17,10 @@ const fadeInVariants = {
     },
 };
 
-const ProfileCard = ({ setEditModal, setDeleteModal, index, contact }) => {
+const ProfileCard = ({ setDeleteModal, index, contact }) => {
+    const [editModal, setEditModal] = useState(false);
     const { _id, username, avatar, email, phoneNumber, address } = contact;
+
     return (
         <motion.div
             initial={fadeInVariants.initial}
@@ -72,6 +75,11 @@ const ProfileCard = ({ setEditModal, setDeleteModal, index, contact }) => {
                     </button>
                 </div>
             </div>
+            <EditModal
+                open={editModal}
+                onClose={setEditModal}
+                contact={contact}
+            />
         </motion.div>
     );
 };

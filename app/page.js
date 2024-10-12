@@ -14,7 +14,6 @@ const pageTitleData = {
     subtitle:
         " Lorem ipsum dolor sit amet consectetur adipisicing elit.Provident vitae nobis tenetur, nesciunt nam recusandae totam eumminima iusto quia.",
 };
-
 const loadingArr = [1, 2, 3, 4];
 
 const AllContactPage = () => {
@@ -27,8 +26,9 @@ const AllContactPage = () => {
     } = useGetAllContactsQuery();
 
     // Required States for modal
-    const [editModal, setEditModal] = useState(false);
+    // const [editModal, setEditModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
+    const [editContact, setEditContact] = useState(null);
 
     if (isGetError) {
         return (
@@ -83,15 +83,15 @@ const AllContactPage = () => {
                     {contactsData?.result?.map((item, i) => (
                         <ProfileCard
                             key={item._id + i}
-                            setEditModal={setEditModal}
                             setDeleteModal={setDeleteModal}
                             index={i}
                             contact={item}
+                            setEditContact={setEditContact}
                         />
                     ))}
                 </div>
 
-                <EditModal open={editModal} onClose={setEditModal} />
+                {/* <EditModal open={editModal} onClose={setEditModal} /> */}
                 <ConfirmModal open={deleteModal} onClose={setDeleteModal} />
             </div>
         </section>

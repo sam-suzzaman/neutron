@@ -73,6 +73,12 @@ a {
     margin-top: 0.5rem;
     letter-spacing: 0.2px;
 }
+button:disabled {
+    cursor: not-allowed;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
 
 /* -------------------------
   2. Navbar Styles
@@ -499,10 +505,4 @@ a {
     max-width: 35rem;
     margin: 0 auto;
     margin-top: 3rem;
-}
-.submit-btn-row > .submit-btn:disabled {
-    cursor: not-allowed;
-    background-color: transparent;
-    border: none;
-    outline: none;
 }

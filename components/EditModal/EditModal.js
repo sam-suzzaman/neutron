@@ -1,20 +1,44 @@
 import React from "react";
 import Modal from "react-responsive-modal";
 import { useForm } from "react-hook-form";
+import { useUpdateContactMutation } from "@/redux/features/api/baseAPI";
+import toast from "react-hot-toast";
 
-const EditModal = ({ open, onClose }) => {
+const EditModal = ({ open, onClose, contact }) => {
+    const { _id, username, avatar, email, phoneNumber, address } = contact;
+
+    // update mutation
+    const [updateContact, { data, isLoading, isError, error }] =
+        useUpdateContactMutation();
+
     // form hook
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
         reset,
     } = useForm();
 
     // form submission handler
     const onSubmit = async (data) => {
-        console.log(data);
+        try {
+            if (!data?.email) {
+                delete data.email;
+            }
+            const response = await updateContact({ data, id: _id });
+            if (response.data.status) {
+                onClose(false);
+                toast.success(response.data.message);
+                reset();
+            } else {
+                toast.error(
+                    `${response.data.message}(${response.data.result})`
+                );
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
     };
 
     return (
@@ -45,6 +69,7 @@ const EditModal = ({ open, onClose }) => {
                                 type="text"
                                 id="username"
                                 placeholder="Type here"
+                                defaultValue={username}
                                 {...register("username", {
                                     required: {
                                         value: true,
@@ -73,12 +98,8 @@ const EditModal = ({ open, onClose }) => {
                                 type="text"
                                 id="email"
                                 placeholder="Type here"
-                                {...register("email", {
-                                    required: {
-                                        value: true,
-                                        message: "email is required",
-                                    },
-                                })}
+                                defaultValue={email || ""}
+                                {...register("email")}
                             />
                             {errors?.email && (
                                 <span className="error">
@@ -93,18 +114,19 @@ const EditModal = ({ open, onClose }) => {
                                 type="text"
                                 id="phoneNumber"
                                 placeholder="Type here"
+                                defaultValue={phoneNumber}
                                 {...register("phoneNumber", {
                                     required: {
                                         value: true,
                                         message: "Contact Number is required",
                                     },
                                     maxLength: {
-                                        value: 30,
-                                        message: "Too long (max 30char)",
+                                        value: 15,
+                                        message: "Too long (max 15char)",
                                     },
                                     minLength: {
-                                        value: 3,
-                                        message: "Too short (min 3char)",
+                                        value: 11,
+                                        message: "Too short (min 11char)",
                                     },
                                 })}
                             />
@@ -121,14 +143,15 @@ const EditModal = ({ open, onClose }) => {
                                 type="text"
                                 id="address"
                                 placeholder="Type here"
+                                defaultValue={address}
                                 {...register("address", {
                                     required: {
                                         value: true,
                                         message: "address is required",
                                     },
                                     maxLength: {
-                                        value: 50,
-                                        message: "Too long (max 50char)",
+                                        value: 100,
+                                        message: "Too long (max 100char)",
                                     },
                                     minLength: {
                                         value: 3,
@@ -149,6 +172,7 @@ const EditModal = ({ open, onClose }) => {
                                 type="text"
                                 id="avatar"
                                 placeholder="Type here"
+                                defaultValue={avatar}
                                 {...register("avatar", {
                                     required: {
                                         value: true,
@@ -165,7 +189,9 @@ const EditModal = ({ open, onClose }) => {
                         </div>
                     </div>
                     <div className="submit-btn-row">
-                        <button className="submit-btn">update now</button>
+                        <button className="submit-btn" disabled={isLoading}>
+                            {isLoading ? "Loading..." : "update now"}
+                        </button>
                     </div>
                 </form>
             </div>
