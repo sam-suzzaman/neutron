@@ -136,6 +136,13 @@ button:disabled {
 .nav-right-col .main-menu .menu-item .menu-link.active {
     color: var(--primary-clr);
 }
+@media screen and (max-width: 500px) {
+    .nav-right-col .main-menu .menu-item .menu-link {
+        font-weight: 400;
+        font-size: 0.85rem;
+        padding: 0.3rem 0.5rem;
+    }
+}
 
 /* -------------------------
   3. Profile Card Styles

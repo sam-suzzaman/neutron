@@ -14,6 +14,11 @@ const navbarData = [
         label: "add contact",
         path: "/add-contact",
     },
+    {
+        _id: 3,
+        label: "favourites",
+        path: "/favourite-contacts",
+    },
 ];
 
 const Navbar = () => {

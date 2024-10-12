@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseApi = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3000/api/v1/",
+        baseUrl: "/api/v1/",
     }),
     endpoints: (builder) => ({
         getAllContacts: builder.query({
@@ -30,7 +30,25 @@ const baseApi = createApi({
                 url: `contacts/${id}`,
                 method: "DELETE",
             }),
-            invalidatesTags: ["contacts"],
+            invalidatesTags: ["contacts", "favourites"],
+        }),
+        getFavouriteContacts: builder.query({
+            query: () => "favourites",
+            providesTags: ["favourites"],
+        }),
+        addToFavourite: builder.mutation({
+            query: (id) => ({
+                url: `favourites/${id}`,
+                method: "POST",
+            }),
+            invalidatesTags: ["favourites"],
+        }),
+        removeFromFavourite: builder.mutation({
+            query: (id) => ({
+                url: `favourites/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["favourites"],
         }),
     }),
 });
@@ -40,5 +58,8 @@ export const {
     useAddContactMutation,
     useUpdateContactMutation,
     useDeleteContactMutation,
+    useGetFavouriteContactsQuery,
+    useAddToFavouriteMutation,
+    useRemoveFromFavouriteMutation,
 } = baseApi;
 export default baseApi;

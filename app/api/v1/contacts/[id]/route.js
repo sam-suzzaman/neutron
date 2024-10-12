@@ -1,4 +1,5 @@
 import ContactModel from "@/model/ContactModel";
+import FavouriteContactsModel from "@/model/FavouriteContactsModel";
 import connectDB from "@/utils/connectDB";
 import ContactValidator from "@/validator/contactValidator";
 import { NextResponse } from "next/server";
@@ -6,12 +7,20 @@ const mongoose = require("mongoose");
 
 // Update a Contact
 export async function PUT(req, content) {
-    try {
-        const id = content.params.id;
-        const payload = await req.json();
+    const id = content.params.id;
+    const payload = await req.json();
 
+    if (!payload || Object.keys(payload).length === 0) {
+        return NextResponse.json({
+            status: false,
+            message: "Operation failed",
+            result: "No data provided to update the contact",
+        });
+    }
+
+    try {
         // ID validation
-        if (!mongoose.isValidObjectId(id) || !id) {
+        if (!mongoose.isValidObjectId(id)) {
             return NextResponse.json({
                 status: false,
                 message: "Update failed",
@@ -89,6 +98,18 @@ export async function DELETE(req, content) {
         }
 
         await connectDB();
+
+        // Check if the contact exists in the favourite list
+        const favContact = await FavouriteContactsModel.findOne({
+            contact_id: id,
+        });
+
+        if (favContact) {
+            // delete it first
+            await FavouriteContactsModel.deleteOne({ contact_id: id });
+        }
+
+        // finally delete the main contact
         const result = await ContactModel.deleteOne({ _id: id });
 
         if (result?.deletedCount == 0) {

@@ -11,20 +11,13 @@ import {
 import { MdError } from "react-icons/md";
 
 const pageTitleData = {
-    title: "contacts list",
+    title: "Favourite list",
     subtitle:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit.Provident vitae nobis tenetur, nesciunt nam recusandae totam eumminima iusto quia.",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Provident vitae nobis tenetur, nesciunt nam recusandae totam eumminima iusto quia.",
 };
 const loadingArr = [1, 2, 3, 4];
 
-const AllContactPage = () => {
-    // Fetching all contacts data
-    const {
-        data: contactsData,
-        isLoading: getLoading,
-        isError: isGetError,
-        error: getError,
-    } = useGetAllContactsQuery();
+const FavouriteContactsPage = () => {
     const {
         data: favContactsData,
         isLoading: favLoading,
@@ -32,7 +25,7 @@ const AllContactPage = () => {
         error: favError,
     } = useGetFavouriteContactsQuery();
 
-    if (isGetError || isFavError) {
+    if (isFavError) {
         return (
             <section className="page-wrapper all-contacts-page">
                 <div className="page-container">
@@ -45,13 +38,10 @@ const AllContactPage = () => {
                             <MdError className="icon" />
                         </div>
                         <h5 className="title">
-                            {getError?.message ||
-                                favError?.message ||
-                                "something went wrong"}
+                            {favError?.message || "something went wrong"}
                         </h5>
                         <p className="message">
-                            {getError?.result ||
-                                favError?.result ||
+                            {favError?.result ||
                                 "Please try again later or reload the page"}
                         </p>
                     </div>
@@ -60,7 +50,30 @@ const AllContactPage = () => {
         );
     }
 
-    if (getLoading || favLoading) {
+    if (favContactsData?.result?.length === 0) {
+        return (
+            <section className="page-wrapper all-contacts-page">
+                <div className="page-container">
+                    <PageTitle
+                        title={pageTitleData.title}
+                        subtitle={pageTitleData.subtitle}
+                    />
+                    <div className="error-content-row">
+                        <div className="placeholder">
+                            <MdError className="icon" />
+                        </div>
+                        <h5 className="title">Empty list</h5>
+                        <p className="message">
+                            The favourite list is empty. To see at first add
+                            contacts to the favourite list.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    if (favLoading) {
         return (
             <section className="page-wrapper all-contacts-page">
                 <div className="page-container">
@@ -79,29 +92,6 @@ const AllContactPage = () => {
         );
     }
 
-    if (contactsData?.result?.length === 0) {
-        return (
-            <section className="page-wrapper all-contacts-page">
-                <div className="page-container">
-                    <PageTitle
-                        title={pageTitleData.title}
-                        subtitle={pageTitleData.subtitle}
-                    />
-                    <div className="error-content-row">
-                        <div className="placeholder">
-                            <MdError className="icon" />
-                        </div>
-                        <h5 className="title">Empty list</h5>
-                        <p className="message">
-                            There is no contacts in the list. Please add new
-                            contacts to the contact list
-                        </p>
-                    </div>
-                </div>
-            </section>
-        );
-    }
-
     return (
         <section className="page-wrapper all-contacts-page">
             <div className="page-container">
@@ -111,13 +101,13 @@ const AllContactPage = () => {
                 />
 
                 <div className="profile-cards-container">
-                    {contactsData?.result?.map((item, i) => (
+                    {favContactsData?.result?.map((item, i) => (
                         <ProfileCard
-                            key={item._id + i}
+                            key={item?._id + i}
                             index={i}
-                            contact={item}
+                            contact={item?.contact_id}
                             favouriteList={favContactsData?.result}
-                            controller={true}
+                            controller={false}
                         />
                     ))}
                 </div>
@@ -126,4 +116,4 @@ const AllContactPage = () => {
     );
 };
 
-export default AllContactPage;
+export default FavouriteContactsPage;

@@ -75,7 +75,7 @@ export async function GET(res) {
             return NextResponse.json({
                 status: false,
                 message: "Not found",
-                result: "Contacts list is empty",
+                result: [],
             });
         }
         return NextResponse.json({

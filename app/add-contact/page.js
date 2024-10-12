@@ -34,6 +34,7 @@ const AddContactPage = () => {
             const response = await addContact(data);
             if (response.data.status) {
                 toast.success(response.data.message);
+                reset();
             } else {
                 toast.error(
                     `${response.data.message}(${response.data.result})`
