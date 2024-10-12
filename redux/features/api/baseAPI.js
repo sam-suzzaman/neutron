@@ -5,7 +5,7 @@ const baseApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: "/api/v1/",
         prepareHeaders: (headers) => {
-            headers.set("Cache-Control", "no-store"); // Set cache control headers here
+            headers.set("Cache-Control", "no-store");
             return headers;
         },
     }),
