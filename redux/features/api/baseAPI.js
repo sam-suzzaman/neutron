@@ -4,6 +4,10 @@ const baseApi = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
         baseUrl: "/api/v1/",
+        prepareHeaders: (headers) => {
+            headers.set("Cache-Control", "no-store"); // Set cache control headers here
+            return headers;
+        },
     }),
     endpoints: (builder) => ({
         getAllContacts: builder.query({
