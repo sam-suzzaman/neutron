@@ -1,8 +1,10 @@
 "use client";
 import PageTitle from "@/components/PageTitle/PageTitle";
-import React, { useEffect, useState } from "react";
+import { useAddContactMutation } from "@/redux/features/api/baseAPI";
+import React from "react";
 
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const pageTitleData = {
     title: "add contact",
@@ -11,20 +13,36 @@ const pageTitleData = {
 };
 
 const AddContactPage = () => {
-    const [isLoading, setIsLoading] = useState(true);
+    // add contact mutation
+    const [addContact, { data, isLoading, isError, error }] =
+        useAddContactMutation();
 
     // form hook
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
         reset,
     } = useForm();
 
     // form submission handler
     const onSubmit = async (data) => {
-        console.log(data);
+        try {
+            if (!data?.email) {
+                delete data.email;
+            }
+            const response = await addContact(data);
+            if (response.data.status) {
+                toast.success(response.data.message);
+            } else {
+                toast.error(
+                    `${response.data.message}(${response.data.result})`
+                );
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
     };
 
     return (
@@ -73,17 +91,12 @@ const AddContactPage = () => {
                             </div>
                             {/* input-2: email */}
                             <div className="input-row">
-                                <label htmlFor="email">email</label>
+                                <label htmlFor="email">email (optional)</label>
                                 <input
                                     type="text"
                                     id="email"
                                     placeholder="Type here"
-                                    {...register("email", {
-                                        required: {
-                                            value: true,
-                                            message: "email is required",
-                                        },
-                                    })}
+                                    {...register("email")}
                                 />
                                 {errors?.email && (
                                     <span className="error">
@@ -107,12 +120,12 @@ const AddContactPage = () => {
                                                 "Contact Number is required",
                                         },
                                         maxLength: {
-                                            value: 30,
-                                            message: "Too long (max 30char)",
+                                            value: 15,
+                                            message: "Too long (max 15char)",
                                         },
                                         minLength: {
-                                            value: 3,
-                                            message: "Too short (min 3char)",
+                                            value: 11,
+                                            message: "Too short (min 11char)",
                                         },
                                     })}
                                 />
@@ -173,7 +186,9 @@ const AddContactPage = () => {
                             </div>
                         </div>
                         <div className="submit-btn-row">
-                            <button className="submit-btn">add contact</button>
+                            <button className="submit-btn" disabled={isLoading}>
+                                {isLoading ? "Loading..." : "add contact"}
+                            </button>
                         </div>
                     </form>
                 </div>

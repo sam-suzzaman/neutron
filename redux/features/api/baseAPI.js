@@ -3,14 +3,22 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseApi = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://jsonplaceholder.typicode.com/",
+        baseUrl: "http://localhost:3000/api/v1/",
     }),
     endpoints: (builder) => ({
-        getPosts: builder.query({
-            query: () => "posts",
+        getAllContacts: builder.query({
+            query: () => "contacts",
+            providesTags: ["contacts"],
+        }),
+        addContact: builder.mutation({
+            query: (data) => ({
+                url: "contacts",
+                method: "POST",
+                body: data,
+            }),
         }),
     }),
 });
 
-export const { useGetPostsQuery } = baseApi;
+export const { useGetAllContactsQuery, useAddContactMutation } = baseApi;
 export default baseApi;

@@ -457,6 +457,40 @@ a {
     }
 }
 
+/* error ui style */
+.all-contacts-page .error-content-row {
+    margin: 0 auto;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: fit-content;
+    padding: 1.5rem;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+}
+
+.error-content-row .placeholder > .icon {
+    font-size: 3.5rem;
+    color: var(--warning-clr);
+    opacity: 0.9;
+}
+.error-content-row > .title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    color: var(--accent-clr);
+    margin: 0.5rem 0 0.5rem;
+}
+.error-content-row > .message {
+    font-size: 0.8rem;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    color: var(--accent-clr);
+}
+
 /* -------------------------
   7. Add Contact Page Styles
 ----------------------------*/
@@ -465,4 +499,10 @@ a {
     max-width: 35rem;
     margin: 0 auto;
     margin-top: 3rem;
+}
+.submit-btn-row > .submit-btn:disabled {
+    cursor: not-allowed;
+    background-color: transparent;
+    border: none;
+    outline: none;
 }

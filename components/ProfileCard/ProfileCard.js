@@ -16,7 +16,8 @@ const fadeInVariants = {
     },
 };
 
-const ProfileCard = ({ setEditModal, setDeleteModal, index }) => {
+const ProfileCard = ({ setEditModal, setDeleteModal, index, contact }) => {
+    const { _id, username, avatar, email, phoneNumber, address } = contact;
     return (
         <motion.div
             initial={fadeInVariants.initial}
@@ -32,25 +33,25 @@ const ProfileCard = ({ setEditModal, setDeleteModal, index }) => {
                     <FaRegHeart className="icon" />
                 </div>
                 <div className="avatar">
-                    <img
-                        src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600"
-                        alt="profile_pic"
-                        className="avatar"
-                    />
+                    <img src={avatar} alt="profile_pic" className="avatar" />
                 </div>
-                <h2 className="name">what ever name</h2>
-                <h6 className="contact">+880-180904372</h6>
+                <h2 className="name">{username}</h2>
+                <h6 className="contact">{phoneNumber || "Not avaialbe"}</h6>
 
                 <ul className="info-list">
                     <li className="item">
                         <MdLocationPin className="icon" />
                         address:
-                        <span className="value">20/A, Motijhil, Dhaka</span>
+                        <span className="value">
+                            {address || "not available"}
+                        </span>
                     </li>
                     <li className="item email">
                         <MdOutlineEmail className="icon" />
                         Email:
-                        <span className="value">testingOne@gmail.com</span>
+                        <span className="value">
+                            {email || "not available"}
+                        </span>
                     </li>
                 </ul>
 
