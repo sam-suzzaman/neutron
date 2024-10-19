@@ -25,6 +25,9 @@ const FavouriteContactsPage = () => {
         error: favError,
     } = useGetFavouriteContactsQuery();
 
+    // console.log(favContactsData?.result);
+    console.log({ isFavError, favError, favContactsData });
+
     if (isFavError) {
         return (
             <section className="page-wrapper all-contacts-page">
@@ -92,6 +95,7 @@ const FavouriteContactsPage = () => {
         );
     }
     console.log(favContactsData?.result);
+
     return (
         <section className="page-wrapper all-contacts-page">
             <div className="page-container">

@@ -14,7 +14,7 @@ const nextConfig = {
     experimental: {
         staleTimes: {
             dynamic: 0,
-            static: 100,
+            static: 0,
         },
     },
 };
