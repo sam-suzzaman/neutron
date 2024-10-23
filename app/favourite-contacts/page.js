@@ -94,7 +94,6 @@ const FavouriteContactsPage = () => {
             </section>
         );
     }
-    console.log(favContactsData?.result);
 
     return (
         <section className="page-wrapper all-contacts-page">

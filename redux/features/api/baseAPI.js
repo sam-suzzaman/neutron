@@ -9,6 +9,7 @@ const baseApi = createApi({
             return headers;
         },
     }),
+    tagTypes: ["contacts", "favourites"],
     endpoints: (builder) => ({
         getAllContacts: builder.query({
             query: () => "contacts",
@@ -20,6 +21,7 @@ const baseApi = createApi({
                 method: "POST",
                 body: data,
             }),
+            invalidatesTags: ["contacts", "favourites"],
         }),
         updateContact: builder.mutation({
             query: ({ data, id }) => ({
